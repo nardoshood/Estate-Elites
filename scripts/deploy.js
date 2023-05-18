@@ -13,7 +13,7 @@ async function main() {
   await marketplace.deployed();
 
   console.log("Marketplace deployed to:", marketplace.address);
-  storemarketplaceData(marketplace);
+  // storemarketplaceData(marketplace);
 
   const EstateNFT = await hre.ethers.getContractFactory("EstateNFT");
   const NFT = await EstateNFT.deploy();
@@ -21,50 +21,50 @@ async function main() {
   await NFT.deployed();
 
   console.log("NFT deployed to:", NFT.address);
-  storeContractData(NFT);
+  // storeContractData(NFT);
 }
 
-function storeContractData(contract) {
-  const fs = require("fs");
-  const contractsDir = __dirname + "/../src/contracts";
+// function storeContractData(contract) {
+//   const fs = require("fs");
+//   const contractsDir = __dirname + "/../src/contracts";
 
-  if (!fs.existsSync(contractsDir)) {
-    fs.mkdirSync(contractsDir);
-  }
+//   if (!fs.existsSync(contractsDir)) {
+//     fs.mkdirSync(contractsDir);
+//   }
 
-  fs.writeFileSync(
-    contractsDir + "/NFT-address.json",
-    JSON.stringify({ NFT: contract.address }, undefined, 2)
-  );
+//   fs.writeFileSync(
+//     contractsDir + "/NFT-address.json",
+//     JSON.stringify({ NFT: contract.address }, undefined, 2)
+//   );
 
-  const NFTArtifact = artifacts.readArtifactSync("NFT");
+//   const NFTArtifact = artifacts.readArtifactSync("NFT");
 
-  fs.writeFileSync(
-    contractsDir + "/NFT.json",
-    JSON.stringify(NFTArtifact, null, 2)
-  );
-}
+//   fs.writeFileSync(
+//     contractsDir + "/NFT.json",
+//     JSON.stringify(NFTArtifact, null, 2)
+//   );
+// }
 
-function storemarketplaceData(contract) {
-  const fs = require("fs");
-  const contractsDir = __dirname + "/../src/contracts";
+// function storemarketplaceData(contract) {
+//   const fs = require("fs");
+//   const contractsDir = __dirname + "";
 
-  if (!fs.existsSync(contractsDir)) {
-    fs.mkdirSync(contractsDir);
-  }
+//   if (!fs.existsSync(contractsDir)) {
+//     fs.mkdirSync(contractsDir);
+//   }
 
-  fs.writeFileSync(
-    contractsDir + "/Marketplace-address.json",
-    JSON.stringify({ Marketplace: contract.address }, undefined, 2)
-  );
+//   fs.writeFileSync(
+//     contractsDir + "/Marketplace-address.json",
+//     JSON.stringify({ Marketplace: contract.address }, undefined, 2)
+//   );
 
-  const NFTArtifact = artifacts.readArtifactSync("Marketplace");
+//   const NFTArtifact = artifacts.readArtifactSync("Marketplace");
 
-  fs.writeFileSync(
-    contractsDir + "/Marketplace.json",
-    JSON.stringify(NFTArtifact, null, 2)
-  );
-}
+//   fs.writeFileSync(
+//     contractsDir + "/Marketplace.json",
+//     JSON.stringify(NFTArtifact, null, 2)
+//   );
+// }
 
 main()
 .then(() => process.exit(0))
