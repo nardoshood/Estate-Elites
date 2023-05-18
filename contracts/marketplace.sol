@@ -37,6 +37,15 @@ struct NFTListing {
        false
        );
   }
+   function getNFTListing(uint _Id) public view returns (NFTListing memory) {
+        return listings[_Id];
+    }
+
+
+    function getListinglength() public view returns (uint) {
+        return numOfListing.current();
+    }
+    
 function sell(uint256 _Id) external onlyNftOwner(_Id){
      NFTListing storage listing = listings[_Id];
      require(listing.seller == msg.sender, "Only the nft owner can sell nft");
@@ -65,12 +74,5 @@ function sell(uint256 _Id) external onlyNftOwner(_Id){
         listing.forSale = false;
     }
 
-    function getNFTListing(uint _Id) public view returns (NFTListing memory) {
-        return listings[_Id];
-    }
-
-
-    function getListinglength() public view returns (uint) {
-        return numOfListing.current();
-    }
+   
 }

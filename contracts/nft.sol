@@ -36,7 +36,7 @@ event Approval(
 }
 
 
-contract EstateNFT is ERC721, Ownable, Pausable {
+contract EstateNFT is ERC721, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
@@ -60,8 +60,8 @@ contract EstateNFT is ERC721, Ownable, Pausable {
 
     constructor() ERC721("EstateNFT", "NFT") {}
 
-
-    function registerEstate(string memory location, uint256 price) public whenNotPaused {
+// Registering a property to be registered on the marketplace
+    function registerEstate(string memory location, uint256 price) public  {
         _tokenIds.increment();
         uint256 tokenId = _tokenIds.current();
 
@@ -69,8 +69,8 @@ contract EstateNFT is ERC721, Ownable, Pausable {
 
         Property memory newProperty = Property(
             payable(msg.sender),
-            tokenId,
             location,
+             tokenId,
             price,
             true
         );
@@ -78,7 +78,9 @@ contract EstateNFT is ERC721, Ownable, Pausable {
 
         emit PropertyRegistered(tokenId);
     }
-function buyProperty(uint256 tokenId) public payable whenNotPaused {
+
+    // 
+function buyProperty(uint256 tokenId) public payable  {
         Property storage property = properties[tokenId];
 
         require(property.forSale, "Property is not for sale.");
@@ -98,7 +100,7 @@ function buyProperty(uint256 tokenId) public payable whenNotPaused {
         emit PropertyPurchased(tokenId, msg.sender);
     }
 
-    function updatePropertyPrice(uint256 tokenId, uint256 newPrice) public whenNotPaused {
+    function updatePropertyPrice(uint256 tokenId, uint256 newPrice) public  {
         Property storage property = properties[tokenId];
 
         require(msg.sender == property.owner, "Not authorized to update the price.");
@@ -109,7 +111,7 @@ function buyProperty(uint256 tokenId) public payable whenNotPaused {
         emit PropertyUpdated(tokenId);
     }
 
-    function putPropertyForSale(uint256 tokenId, uint256 price) public whenNotPaused {
+    function putPropertyForSale(uint256 tokenId, uint256 price) public  {
         Property storage property = properties[tokenId];
 
         require(msg.sender == property.owner, "Not authorized to put the property for sale.");
@@ -119,7 +121,7 @@ function buyProperty(uint256 tokenId) public payable whenNotPaused {
         property.forSale = true;
     }
 
-    function withdrawProperty(uint256 tokenId) public whenNotPaused {
+    function withdrawProperty(uint256 tokenId) public  {
         Property storage property = properties[tokenId];
 
         require(msg.sender == property.owner, "Not authorized to withdraw the property from sale.");
