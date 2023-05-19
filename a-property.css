@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;500&family=DM+Sans&family=Lato&family=Lora:ital,wght@1,500&family=Open+Sans:wght@300&family=Poppins&family=Roboto:wght@100;400;500&family=Space+Grotesk&display=swap');
+
+body{
+    background: #252525;
+  
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+list-style: none;
+color: #fff !important;
+
+}
+.active{
+    color: #d2f112 !important ;
+    /* */
+}
+.header{
+    background: #252525;
+}
+ ul li::after{
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    margin: auto;
+    background: linear-gradient(90deg, #9BE829 -26.23%, #F2F703 133.02%) !important;
+    transition: 0.5s;
+}
+  ul li:hover::after{
+    width: 100%;
+}
+.nav-btn{
+    background: linear-gradient(90deg, #9BE829 -26.23%, #F2F703 133.02%) !important;
+}
+.market{
+    font-size: 80px !important;
+}
+.subscribe{
+    background: linear-gradient(90deg, #9BE829 -26.23%, #F2F703 133.02%) !important;
+    border:1px solid #092C4C;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
